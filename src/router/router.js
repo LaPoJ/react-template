@@ -1,13 +1,8 @@
 // import { BrowserRouter as Router } from 'react-router-dom';
 
-import App from '../App';
-// import Home from '../pages/Home/index';
-// import About from '../pages/About/index';
-// import Login from '../pages/Login/index';
-import Test01 from '../components/Home/Test01';
-import Test02 from '../components/Home/Test02';
+import App from '@/App';
 
-//
+import { Test01, Test02 } from "@com/index";
 import { Home, Login, About } from '../pages/index.js';
 
 const routerConfig = [
