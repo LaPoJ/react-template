@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import { Link } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config'
 
-function App() {
+function App({ route }) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <ul>
+          <li><Link to="/home">首页</Link></li>
+          <li><Link to="/login">登录</Link></li>
+          <li><Link to="/about">关于我们</Link></li>
+      </ul>
+      { renderRoutes(route.routes) }
     </div>
   );
 }
