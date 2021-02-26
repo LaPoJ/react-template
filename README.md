@@ -2,6 +2,52 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### react项目配置域名
+  本地增加 `.env.development` 文件，内容如下
+  ```env
+    REACT_APP_PUBLIC_URL = 'http://cc.test.com'
+  ```
+
+  `/node_modules/react-dev-utils/WebpackDevServerUtils.js`
+
+  更改 `printInstructions` 内容, 一下为已更改的内容
+  开始行在 90 行
+  ```javascript
+      if (urls.lanUrlForTerminal) {
+        console.log(
+          `  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`
+        );
+        console.log(
+          `  ${chalk.bold('On Your Network:')}  ${urls.lanUrlForTerminal}`
+        );
+      } else if (process.env.REACT_APP_PUBLIC_URL) {
+        console.log(
+          `  ${chalk.bold('Local:')}            ${urls.localUrlForTerminal}`
+        );
+        console.log(
+          `  ${chalk.bold('On Your Network:')}  ${process.env.REACT_APP_PUBLIC_URL}`
+        );
+      } else {
+        console.log(`  ${urls.localUrlForTerminal}`);
+      }
+  ```
+
+  **重要： 此处一定要改**
+
+  `/node_modules/react-scripts/scripts/start.js/` 需要更改内容
+
+  将 `openBrowser(urls.localUrlForBrowser)`（约在160行左右） 行代码替换成下面的代码片段
+
+  ```javascript
+    if (process.env.REACT_APP_PUBLIC_URL) {
+      openBrowser(process.env.REACT_APP_PUBLIC_URL)
+    } else {
+      openBrowser(urls.localUrlForBrowser);
+    }
+  ```
+
+配合 nginx 使用
+
 ## Available Scripts
 
 In the project directory, you can run:
