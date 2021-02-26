@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './assets/css/index.scss';
-import reportWebVitals from './config/reportWebVitals';
+import '@assets/css/index.scss';
+import reportWebVitals from '@config/reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
-import routes from './router/router';
+import routes from '@router/router';
 import { renderRoutes } from 'react-router-config'
 
 
