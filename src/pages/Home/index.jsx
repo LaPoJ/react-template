@@ -71,11 +71,12 @@ export default class Home extends Component {
   render() {
     return (
       <React.Fragment>
-				<Table
+        <Table
+          className="todolist"
 					columns={this.state.tableColumns}
-					dataSource={this.state.todoList.list}
+          dataSource={this.state.todoList.list}
+          pagination={ {hideOnSinglePage: true}  }
 					bordered
-					sticky
 				/>
         <h2>This is the page for show home.</h2>
         <ul>
