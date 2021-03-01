@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import { todoList } from "../modules/index";
+import { todoList, count } from "../modules/index";
 
 const reducer = combineReducers({
-    todoList
+    todoList,
+    count
 })
 
 export default reducer
