@@ -1,14 +1,14 @@
-import { GET_DOTO, ADD_TODO, DELETE_TODO } from './type';
+import { GET_DOTO, ADD_TODO, DELETE_TODO } from '../type';
 
 // 增加todo
-export const addTodoAction = () => ({
-  type: ADD_TODO
+export const addTodoAction = (val) => ({
+  type: ADD_TODO,
+  data: val
 })
 
 // 获取todo
-export const getTodoAction = (data) => ({
+export const getTodoAction = () => ({
   type: GET_DOTO,
-  data: data
 })
 
 export const deleteTodoAction = (index) => ({

@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Button, Table } from "antd"
+import { Button, Table, Input } from "antd"
 import { Link } from "react-router-dom"
 import { renderRoutes } from "react-router-config"
 import store from "@/store/index"
@@ -39,16 +39,20 @@ export default class Home extends Component {
 
   constructor(props) {
     super(props)
+    console.log(store.getState());
 		this.state = {
 			...this.state,
 			...store.getState()
 		}
-		this.stateChange = this.stateChange.bind(this)
-		store.subscribe(this.stateChange)
+    this.stateChange = this.stateChange.bind(this)
+    this.addTodoList = this.addTodoList.bind(this)
+    store.subscribe(this.stateChange)
   }
 
-	stateChange() {
-		this.setState(store.getState())
+  stateChange() {
+    this.setState({
+      ...store.getState()
+    })
 	}
 
   componentDidMount() {
@@ -56,8 +60,13 @@ export default class Home extends Component {
     store.dispatch(action)
   }
 
-  addTodoList(data) {
-    const action = addTodoAction(data)
+  addTodoList(val) {
+    // const data = {
+    //   id: this.state.todoList.length + 1,
+    //   val: val,
+    //   key: this.state.todoList.length
+    // }
+    const action = addTodoAction(val)
     store.dispatch(action)
   }
 
@@ -71,10 +80,20 @@ export default class Home extends Component {
   render() {
     return (
       <React.Fragment>
+        <div>
+          <Input.Search
+            className="todolistAdd"
+            bordered
+            placeholder="add todo list value"
+            maxLength="800"
+            enterButton="增加"
+            onSearch={this.addTodoList}
+          />
+        </div>
         <Table
           className="todolist"
 					columns={this.state.tableColumns}
-          dataSource={this.state.todoList.list}
+          dataSource={this.state.todoList}
           pagination={ {hideOnSinglePage: true}  }
 					bordered
 				/>
