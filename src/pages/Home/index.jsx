@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Button, Table, Input } from "antd"
+import { Button, Table, Input, message } from "antd"
 import { Link } from "react-router-dom"
 import { renderRoutes } from "react-router-config"
 import store from "@/store/index"
@@ -61,19 +61,25 @@ export default class Home extends Component {
   }
 
   addTodoList(val) {
-    // const data = {
-    //   id: this.state.todoList.length + 1,
-    //   val: val,
-    //   key: this.state.todoList.length
-    // }
-    const action = addTodoAction(val)
-    store.dispatch(action)
+    if (val) {
+      const action = addTodoAction(val)
+      store.dispatch(action)
+    } else {
+      message.warning('输入内容不能为空')
+    }
   }
 
 	deleteTodo(index) {
 		console.log(index);
     const action = deleteTodoAction(index)
 		store.dispatch(action)
+  }
+
+  componentWillUnmount = () => {
+    // eslint-disable-next-line no-undef
+    this.setState = (state, callback => {
+      return
+    })
   }
 
 
